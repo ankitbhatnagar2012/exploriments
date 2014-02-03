@@ -19,6 +19,7 @@ Observe the behaviour of a simple pendulum by :-
 Observe how addition of multiple vectors is performed by :-
 
 1. Altering the respective angle between two vectors.
+
 2. Altering respective magnitude of vector/s.
 
 
