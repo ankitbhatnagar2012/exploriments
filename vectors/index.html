@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset=utf-8 />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>Vectors</title>
+    <link href="style.css" rel="stylesheet" />   
+  </head>
+  <body onload="init();return false;">
+      <div id="gameWrapper" align="center">
+          <div id="gameHeader">
+            Vectors Addition
+          </div>
+          <div id="gameBody">
+            <div id="gameBodyLeft">
+              <canvas id="gameCanvas" width="700" height="500"></canvas>
+            </div>
+            <div id="gameBodyRight">
+                <div id="gameBodyRightHeader">
+                    Vector Properties
+                </div>
+                <div id="gameBodyRightContent"></div>
+            </div>            
+          </div>
+          <div id="gameFooter">
+                  <div id="createBtn">Create</div>
+                  <div id="addBtn">Add</div>
+                  <div id="resetBtn">Reset</div>
+          </div>
+          <div style="clear:both;height:40px;margin-top:1px;"></div>
+      </div>
+      <!--
+      <audio loop="loop" autoplay="autoplay">  
+        <source src="music2.wav" />  
+      </audio> 
+      -->
+  </body>
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <script type="text/javascript">
+
+    var canvas = document.getElementById('gameCanvas');
+    var gameDetails = document.getElementById('gameBodyRightContent');
+    var createBtn = document.getElementById('createBtn');
+    var ctx = canvas.getContext('2d');
+
+    $(document).ready(function(){
+
+      $('#createBtn').click(function(){
+        createVector();
+      });
+
+      $('#addBtn').click(function(){
+        enableResultVector();
+      });
+      
+      $('#resetBtn').click(function(){
+         resetSystem(); 
+      });
+
+    });
+  </script>
+  <script type="text/javascript" src="js/gameplay.js"></script>
+</html>

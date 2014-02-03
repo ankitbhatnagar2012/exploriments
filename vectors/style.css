@@ -1,0 +1,169 @@
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+#gameWrapper{
+
+}      
+
+#gameHeader{
+	width: 100%;
+	height: 50px;
+	background-color: #9c9c9c;
+	border-bottom: 1px SOLID #000;
+	font-family: Helvetica;
+	font-size: 20px;
+	line-height: 50px;
+	vertical-align: middle;
+	text-align: left;
+	padding-left: 40px;
+	color: #fff;
+}
+
+#gameBody{
+	width: 960px;
+	min-width: 960px;
+	/* background-color: #000; */
+	height: 500px;
+	margin-top: 20px;
+}
+
+#gameBodyLeft{
+	width: 700px;
+	min-width: 700px;
+	/* background-color: #ececec; */
+	height: 500px;
+	float: left;
+}
+
+#gameBodyRight{
+	width: 250px;
+	min-width: 250px;
+	/* background-color: #ececec; */
+	height: 490px;
+	float: left;
+	color: #000;
+	border: 5px solid #123456;	
+}
+
+#gameBodyRightHeader{
+	height: 40px;
+	width: 250px;
+	background-color: #123456;
+	color: #fff;
+	font-family: Helvetica;
+	font-size: 18px;
+	line-height: 40px;
+	vertical-align: middle;
+}
+
+#gameCanvas{
+	/* background-color: #000; */
+}
+
+#gameFooter{
+        width: 960px;
+        min-width: 960px;
+	clear: both;
+	margin-top: 20px;
+}
+
+#createBtn{
+	height: 40px;
+	width: 100px;
+	color: #fff;
+	background-color: #123456;
+	font-family: Helvetica;
+	font-size: 20px;
+	line-height: 40px;
+	vertical-align: middle;
+	border-radius: 5px;
+	float:left;
+	cursor: pointer;
+}
+
+#addBtn{
+	height: 40px;
+	width: 100px;
+	color: #fff;
+	background-color: #123456;
+	font-family: Helvetica;
+	font-size: 20px;
+	line-height: 40px;
+	vertical-align: middle;
+	border-radius: 5px;
+	float: left;
+	margin-left: 20px;
+	cursor: pointer;
+}
+
+#resetBtn{
+        height: 40px;
+	width: 100px;
+	color: #fff;
+	background-color: #123456;
+	font-family: Helvetica;
+	font-size: 20px;
+	line-height: 40px;
+	vertical-align: middle;
+	border-radius: 5px;
+	float: right;
+	margin-right: 70px;
+	cursor: pointer;
+}
+
+.vectorProp{
+	height: 65px;
+}
+
+.vectorPropLeft{
+	width: 40px;
+	height: 65px;
+	background-color: "#9c9c9c";
+	float:left;
+}
+
+.vectorImage{
+	margin-top: 15px;
+	margin-left: 8px;
+	height: 40px;
+	width: 40px;
+}
+
+.vectorPropCenter{
+	width: 100px;
+	height: 65px;
+	background-color: "#fff";
+	float:left;
+}
+
+.vectorPropRight{
+	width: 100px;
+	height: 65px;
+	background-color: "#000";
+	float:left;
+}
+
+.vectorMagnitude{
+	font-family: Helvetica;
+	font-size: 15px;
+	color: #fff;
+	background-color: #4d4d4d;
+	width: 60px;
+	height: 20px;
+	line-height: 20px;
+	vertical-align: middle;
+	border-radius: 4px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.vectorX{
+	font-family: Helvetica;
+	font-size: 12px;
+	color: #4f4e4e;
+	margin-top: 0px;
+	margin-bottom: 3px;
+}
+

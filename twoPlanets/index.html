@@ -1,0 +1,196 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset=utf-8 />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>Simple Pendulum</title>
+    <link href="style.css" rel="stylesheet" />   
+  </head>
+  <body onload="init();return false;">
+      <div id="gameWrapper" align="center">
+          <div id="gameHeader">
+            Simple Pendulum on Two Planets
+          </div>
+          <div id="gameBody">
+              <div id="gameBodyLeft">
+                  <div id="planetStripLeft">
+                      <div class="planets">
+                        <img class="planetsButton" id="sun1" src="images/Sun.jpg" />
+                        <img class="planetsButton" id="moon1" src="images/Moon.png" />
+                        <img class="planetsButton" id="mercury1" src="images/Mercury.jpg" />
+                        <img class="planetsButton" id="venus1" src="images/Venus.jpg" />
+                        <img class="planetsButton" id="earth1" src="images/Earth.jpg" />
+                        <img class="planetsButton" id="mars1" src="images/Mars.jpg" />
+                        <img class="planetsButton" id="jupiter1" src="images/Jupiter.jpg" />
+                        <img class="planetsButton" id="saturn1" style="width:60px;" src="images/Saturn.jpg" />
+                        <img class="planetsButton" id="uranus1" src="images/Uranus.jpg" />
+                        <img class="planetsButton" id="neptune1" src="images/Neptune.jpg" />
+                        <img class="planetsButton" id="pluto1" src="images/Pluto.jpg" />
+                      </div>
+                  </div>
+                  <div id="gameBodyLeftContent">
+                      <div id="gameBodyLeftHeader"></div>
+                      <canvas id="canvasLeft" width="400" height="450"></canvas>
+                  </div>
+                  <div id="gameStats1"></div>                  
+              </div>
+              <div id="gameBodyRight">
+                  <div id="gameBodyRightContent">
+                      <div id="gameBodyRightHeader"></div>
+                      <canvas id="canvasRight" width="400" height="450"></canvas>
+                  </div>
+                  <div id="planetStripRight">
+                    <div class="planets">
+                        <img class="planetsButton" id="sun2" src="images/Sun.jpg" />
+                        <img class="planetsButton" id="moon2" src="images/Moon.png" />
+                        <img class="planetsButton" id="mercury2" src="images/Mercury.jpg" />
+                        <img class="planetsButton" id="venus2" src="images/Venus.jpg" />
+                        <img class="planetsButton" id="earth2" src="images/Earth.jpg" />
+                        <img class="planetsButton" id="mars2" src="images/Mars.jpg" />
+                        <img class="planetsButton" id="jupiter2" src="images/Jupiter.jpg" />
+                        <img class="planetsButton" id="saturn2" style="width:60px;" src="images/Saturn.jpg" />
+                        <img class="planetsButton" id="uranus2" src="images/Uranus.jpg" />
+                        <img class="planetsButton" id="neptune2" src="images/Neptune.jpg" />
+                        <img class="planetsButton" id="pluto2" src="images/Pluto.jpg" />
+                      </div>
+                  </div>
+                  <div id="gameStats2"></div>                  
+              </div>
+          </div>
+          <div id="gameFooter">
+              <div id="stopAnimationBtn">Stop</div>
+          </div>
+          <div style="clear:both;height:40px;margin-top:1px;"></div>
+      </div>
+  </body>
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <script type="text/javascript">
+
+    var canvasLeft = document.getElementById('canvasLeft');
+    var ctxLeft = canvasLeft.getContext('2d');
+        
+    var canvasRight = document.getElementById('canvasRight');
+    var ctxRight = canvasRight.getContext('2d');
+    
+    var gameHeader = document.getElementById('gameHeader');
+
+    var pendulum1 = {};
+    var pendulum2 = {};
+    
+    var inMotion = 0;
+
+    $(document).ready(function(){
+        
+        var str = "Number of oscillations: 0<br>Time elapsed: 0 sec";
+        $('#gameStats1').html(str);
+        $('#gameStats2').html(str);       
+
+        pendulum1.g = pendulum2.g = 9.81;
+
+        $('#gameBodyLeftHeader').html('Earth (g = '+ pendulum1.g +' m/s^2)');
+        $('#gameBodyRightHeader').html('Earth (g = '+ pendulum2.g +' m/s^2)');
+        
+        $('#stopAnimationBtn').click(function(){
+            stopAnimation();
+        });
+
+        $('.planetsButton').click(function(){
+            var id = this.id;
+            
+            if(inMotion === 1) return; // stop gravity changes during one motion cycle
+            
+            switch(id){
+              case 'sun1' : 
+                  pendulum1.g = 274;
+                  $('#gameBodyLeftHeader').html('Sun (g = '+ pendulum1.g +' m/s^2)');
+                  break;
+              case 'sun2' : 
+                  pendulum2.g = 274;
+                  $('#gameBodyRightHeader').html('Sun (g = '+ pendulum2.g +' m/s^2)');
+                  break;
+              case 'moon1' : 
+                  pendulum1.g = 1.62;
+                  $('#gameBodyLeftHeader').html('Moon (g = '+ pendulum1.g +' m/s^2)');
+                  break;
+              case 'moon2' : 
+                  pendulum2.g = 1.62;
+                  $('#gameBodyRightHeader').html('Moon (g = '+ pendulum2.g +' m/s^2)');
+                  break;
+              case 'mercury1' : 
+                  pendulum1.g = 3.61;
+                  $('#gameBodyLeftHeader').html('Mercury (g = '+ pendulum1.g +' m/s^2)');
+                  break;
+              case 'mercury2' : 
+                  pendulum2.g = 3.61;
+                  $('#gameBodyRightHeader').html('Mercury (g = '+ pendulum2.g +' m/s^2)');
+                  break;
+              case 'venus1' : 
+                  pendulum1.g = 8.83;
+                  $('#gameBodyLeftHeader').html('Venus (g = '+ pendulum1.g +' m/s^2)');
+                  break;
+              case 'venus2' : 
+                  pendulum2.g = 8.83;
+                  $('#gameBodyRightHeader').html('Venus (g = '+ pendulum2.g +' m/s^2)');
+                  break;
+              case 'earth1' : 
+                  pendulum1.g = 9.81;
+                  $('#gameBodyLeftHeader').html('Earth (g = '+ pendulum1.g +' m/s^2)');
+                  break;
+              case 'earth2' : 
+                  pendulum2.g = 9.81;
+                  $('#gameBodyRightHeader').html('Earth (g = '+ pendulum2.g +' m/s^2)');
+                  break;
+              case 'mars1' : 
+                  pendulum1.g = 3.75;
+                  $('#gameBodyLeftHeader').html('Mars (g = '+ pendulum1.g +' m/s^2)');
+                  break;
+              case 'mars2' : 
+                  pendulum2.g = 3.75;
+                  $('#gameBodyRightHeader').html('Mars (g = '+ pendulum2.g +' m/s^2)');
+                  break;
+              case 'jupiter1' : 
+                  pendulum1.g = 26.0;
+                  $('#gameBodyLeftHeader').html('Jupiter (g = '+ pendulum1.g +' m/s^2)');
+                  break;
+              case 'jupiter2' : 
+                  pendulum2.g = 26.0;
+                  $('#gameBodyRightHeader').html('Jupiter (g = '+ pendulum2.g +' m/s^2)');
+                  break;
+              case 'saturn1' : 
+                  pendulum1.g = 11.2;
+                  $('#gameBodyLeftHeader').html('Saturn (g = '+ pendulum1.g +' m/s^2)');
+                  break;
+              case 'saturn2' : 
+                  pendulum2.g = 11.2;
+                  $('#gameBodyRightHeader').html('Saturn (g = '+ pendulum2.g +' m/s^2)');
+                  break;
+              case 'uranus1' : 
+                  pendulum1.g = 10.5;
+                  $('#gameBodyLeftHeader').html('Uranus (g = '+ pendulum1.g +' m/s^2)');
+                  break;
+              case 'uranus2' : 
+                  pendulum2.g = 10.5;
+                  $('#gameBodyRightHeader').html('Uranus (g = '+ pendulum2.g +' m/s^2)');
+                  break;
+              case 'neptune1' : 
+                  pendulum1.g = 13.3;
+                  $('#gameBodyLeftHeader').html('Neptune (g = '+ pendulum1.g +' m/s^2)');
+                  break;
+              case 'neptune2' : 
+                  pendulum2.g = 13.3;
+                  $('#gameBodyRightHeader').html('Neptune (g = '+ pendulum2.g +' m/s^2)');
+                  break;
+              case 'pluto1' : 
+                  pendulum1.g = 0.61;
+                  $('#gameBodyLeftHeader').html('Pluto (g = '+ pendulum1.g +' m/s^2)');
+                  break;
+              case 'pluto2' : 
+                  pendulum2.g = 0.61;
+                  $('#gameBodyRightHeader').html('Pluto (g = '+ pendulum2.g +' m/s^2)');
+                  break;
+            }
+        });
+    });
+  </script>
+  <script type="text/javascript" src="js/gameplay.js"></script>
+</html>
